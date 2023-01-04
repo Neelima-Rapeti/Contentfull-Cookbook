@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import * as contentful from "contentful";
+import { NavLink } from "react-router-dom";
 
 export default function AllRecipes() {
   const [recipe, setRecipe] = useState([]);
@@ -19,6 +20,7 @@ export default function AllRecipes() {
   return (
     <div>
       <h3>AllRecipes</h3>
+      <NavLink to="/">Homepage</NavLink>
       <div>
         {recipe.map((rec) => {
           return (

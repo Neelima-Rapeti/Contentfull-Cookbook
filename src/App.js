@@ -6,14 +6,17 @@ import IndividualRecipe from "./components/IndividualRecipe";
 import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
 //https://react-icons.github.io/react-icons
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
-      <Homepage />
-      <AllRecipes />
-      <IndividualRecipe />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/allrecipes" element={<AllRecipes />} />
+        <Route path="/recipe/:id" element={<IndividualRecipe />} />
+      </Routes>
       <Footer />
     </div>
   );
