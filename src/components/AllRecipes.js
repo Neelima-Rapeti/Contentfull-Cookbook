@@ -1,22 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import * as contentful from "contentful";
 import { NavLink } from "react-router-dom";
-
+import { Button } from "react-bootstrap";
+import client from "../client";
 export default function AllRecipes() {
   const [recipe, setRecipe] = useState([]);
 
   useEffect(() => {
-    const client = contentful.createClient({
-      space: process.env.REACT_APP_SPACE,
-      accessToken: process.env.REACT_APP_ACCESSTOKEN,
-    });
-
     client
-      .getEntries()
+      .getEntries({
+        content_type: "blog",
+      })
       .then((response) => setRecipe(response.items))
       .catch(console.error);
   }, []);
+  console.log(recipe);
   return (
     <div>
       <h3>AllRecipes</h3>
@@ -30,8 +28,9 @@ export default function AllRecipes() {
               <p>prep: {rec.fields.metrics[1]}</p>
               <p>cook: {rec.fields.metrics[2]}</p>
               <p>total: {rec.fields.metrics[3]}</p>
-              <p> {rec.fields.description}</p>
+              <p> description: {rec.fields.description}</p>
               <p>rating: {rec.fields.rating}</p>
+              <p></p>
               <div>
                 <p>INGREDIENTS </p>
                 <ul>
@@ -58,6 +57,9 @@ export default function AllRecipes() {
                   />
                 }
               </div>
+              <NavLink to={`/recipe/${rec.sys.id}`}>
+                <Button variant="primary">View Details</Button>
+              </NavLink>
             </div>
           );
         })}
