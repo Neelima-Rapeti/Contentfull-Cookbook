@@ -15,55 +15,62 @@ export default function IndividualRecipe() {
       .then((response) => setRecipeDetails(response))
       .catch(console.error);
   }, [id]);
-
+  console.log(recipeDetails);
   return (
-    <div className="container bg-success">
+    <div className="container ">
       <div className="row">
-        <div className="w-75">
+        <div className="col-md-9 col-sm-12  mx-auto mt-4 mb-4">
           {" "}
           <div className="container bg-dark text-white">
             <div className="row">
-              <div className="col-sm-9 bg-primary p-3">
-                <h3>{recipeDetails.fields?.title}</h3>
+              <div className="col-sm-8 p-4 pb-1">
+                <h2 className="">{recipeDetails.fields?.title}</h2>
+
                 <p>
-                  <GiKnifeFork /> yield: {recipeDetails.fields?.metrics[0]}{" "}
-                  SERVINGS
+                  <GiKnifeFork /> <span className="fst-italic"> yield: </span>
+                  {recipeDetails.fields?.metrics[0]} SERVINGS
                 </p>
                 <p>
                   {" "}
-                  <BsClock /> prep: {recipeDetails.fields?.metrics[1]} MINUTES
+                  <BsClock /> <span className="fst-italic"> prep: </span>
+                  {recipeDetails.fields?.metrics[1]} MINUTES
                 </p>
                 <p>
                   {" "}
-                  <BsClock /> cook: {recipeDetails.fields?.metrics[2]} MINUTES
+                  <BsClock /> <span className="fst-italic"> cook: </span>
+                  {recipeDetails.fields?.metrics[2]} MINUTES
                 </p>
                 <p>
                   {" "}
-                  <BsClock /> total: {recipeDetails.fields?.metrics[3]} MINUTES
+                  <BsClock />
+                  <span className="fst-italic"> total: </span>
+                  {recipeDetails.fields?.metrics[3]} MINUTES
                 </p>
-                <p>{recipeDetails.fields?.description}</p>
-                <p>rating: {recipeDetails.fields?.rating}</p>
+
+                <p className="text-sm-start">
+                  {recipeDetails.fields?.description}
+                </p>
               </div>
-              <div className=" col-sm-3 bg-warning p-3">
+              <div className="col-sm-4 pt-4 p-2 mx-auto">
                 <img
                   src={recipeDetails.fields?.image.fields.file.url}
                   alt={recipeDetails.fields?.title}
-                  className="w-100"
+                  className="img-fluid "
                 />
               </div>
             </div>
           </div>
-          <div className="bg-info">
-            <div className="border">
-              <p>INGREDIENTS </p>
+          <div className="bg-light ">
+            <div className="w-75 mx-3 pt-3">
+              <h4 className="text-muted font-monospace">INGREDIENTS </h4>
               <ul>
                 {recipeDetails.fields?.ingredients.map((el, index) => (
                   <li key={index}>{el}</li>
                 ))}
               </ul>
             </div>
-            <div className="border">
-              <p>INSTRUCTIONS</p>
+            <div className="w-75 mx-3 pb-3">
+              <h4 className="text-muted font-monospace">INSTRUCTIONS</h4>
               <ol>
                 {recipeDetails.fields?.instructions.map((el, index) => (
                   <li key={index}>{el}</li>
