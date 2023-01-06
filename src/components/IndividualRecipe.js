@@ -1,14 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import client from "../client";
 import { GiKnifeFork } from "react-icons/gi";
 import { BsClock } from "react-icons/bs";
+import { Button } from "react-bootstrap";
 
 export default function IndividualRecipe() {
   const [recipeDetails, setRecipeDetails] = useState([]);
   const { id } = useParams();
-
+  const navigation = useNavigate();
+  const goBack = () => {
+    navigation(-1);
+  };
   useEffect(() => {
     client
       .getEntry(id)
@@ -77,6 +81,9 @@ export default function IndividualRecipe() {
                 ))}
               </ol>
             </div>
+            <Button onClick={goBack} variant="dark" className="text-center">
+              Go Back
+            </Button>
           </div>
         </div>
       </div>
