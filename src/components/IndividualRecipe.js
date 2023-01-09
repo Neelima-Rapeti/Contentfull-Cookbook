@@ -27,63 +27,67 @@ export default function IndividualRecipe() {
           {" "}
           <div className="container bg-dark text-white">
             <div className="row">
-              <div className="col-sm-8 p-4 pb-1">
-                <h2 className="">{recipeDetails.fields?.title}</h2>
-
-                <p>
-                  <GiKnifeFork /> <span className="fst-italic"> yield: </span>
-                  {recipeDetails.fields?.metrics[0]} SERVINGS
-                </p>
-                <p>
-                  {" "}
-                  <BsClock /> <span className="fst-italic"> prep: </span>
-                  {recipeDetails.fields?.metrics[1]} MINUTES
-                </p>
-                <p>
-                  {" "}
-                  <BsClock /> <span className="fst-italic"> cook: </span>
-                  {recipeDetails.fields?.metrics[2]} MINUTES
-                </p>
-                <p>
-                  {" "}
-                  <BsClock />
-                  <span className="fst-italic"> total: </span>
-                  {recipeDetails.fields?.metrics[3]} MINUTES
-                </p>
-
-                <p className="text-sm-start">
-                  {recipeDetails.fields?.description}
-                </p>
+              <div className="col-sm-8 p-3">
+                <h2 className="pb-1">{recipeDetails.fields?.title}</h2>
+                <div className="row row-cols-2 mt-3 ">
+                  <p>
+                    <GiKnifeFork /> <span className="fst-italic"> yield: </span>
+                    {recipeDetails.fields?.metrics[0]} SERVINGS
+                  </p>
+                  <p>
+                    {" "}
+                    <BsClock /> <span className="fst-italic"> prep: </span>
+                    {recipeDetails.fields?.metrics[1]} MINUTES
+                  </p>
+                  <p>
+                    {" "}
+                    <BsClock /> <span className="fst-italic"> cook: </span>
+                    {recipeDetails.fields?.metrics[2]} MINUTES
+                  </p>
+                  <p>
+                    {" "}
+                    <BsClock />
+                    <span className="fst-italic"> total: </span>
+                    {recipeDetails.fields?.metrics[3]} MINUTES
+                  </p>
+                </div>
+                <p className=" fs-5">{recipeDetails.fields?.description}</p>
               </div>
-              <div className="col-sm-4 pt-4 p-2 mx-auto">
+              <div className="col-sm-4 mt-4  mx-auto">
                 <img
                   src={recipeDetails.fields?.image.fields.file.url}
                   alt={recipeDetails.fields?.title}
-                  className="img-fluid "
+                  className="img-fluid"
                 />
               </div>
             </div>
           </div>
-          <div className="bg-light ">
-            <div className="w-75 mx-3 pt-3">
-              <h4 className="text-muted font-monospace">INGREDIENTS </h4>
-              <ul>
-                {recipeDetails.fields?.ingredients.map((el, index) => (
-                  <li key={index}>{el}</li>
-                ))}
-              </ul>
+          <div className="container bg-light ">
+            <div className="row pt-3 col-md-8 col-sm-11">
+              <div>
+                <h4 className="text-muted font-monospace">INGREDIENTS </h4>
+                <ul>
+                  {recipeDetails.fields?.ingredients.map((el, index) => (
+                    <li key={index}>{el}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div>
+                <h4 className="text-muted font-monospace">INSTRUCTIONS</h4>
+                <ol>
+                  {recipeDetails.fields?.instructions.map((el, index) => (
+                    <li key={index}>{el}</li>
+                  ))}
+                </ol>
+              </div>
             </div>
-            <div className="w-75 mx-3 pb-3">
-              <h4 className="text-muted font-monospace">INSTRUCTIONS</h4>
-              <ol>
-                {recipeDetails.fields?.instructions.map((el, index) => (
-                  <li key={index}>{el}</li>
-                ))}
-              </ol>
+            <div className="d-flex justify-content-center pb-1">
+              <Button onClick={goBack} variant="dark">
+                Go Back
+              </Button>
             </div>
-            <Button onClick={goBack} variant="dark" className="text-center">
-              Go Back
-            </Button>
+            <div>{/* {recipeDetails.fields?.} */}</div>
           </div>
         </div>
       </div>
