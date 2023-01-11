@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import client from "../client";
 import Cell from "./Cell"
-
+import Hero from "./Hero";
   
 
 export default function Homepage() {
@@ -24,7 +24,7 @@ export default function Homepage() {
 
   return (
     <div>
-      <div>HERO</div>
+      <Hero />
       <div>
         <h2>Recently added</h2>
         <div className="ExploreBody">
