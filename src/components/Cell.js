@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import {useState} from "react";
 import eye from '../images/eye.gif';
 
-export default function ExploreSection({ entry }) {
+export default function Cell({ entry }) {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -30,5 +30,3 @@ export default function ExploreSection({ entry }) {
       
     );
   }
-
-  
