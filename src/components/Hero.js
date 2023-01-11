@@ -2,6 +2,7 @@ import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 import { useState, useEffect } from "react";
 import client from "../client";
+import { NavLink } from "react-bootstrap";
 
 function Hero() {
   const [recipe, setRecipe] = useState([]);
@@ -17,22 +18,17 @@ function Hero() {
       .catch(console.error);
   }, []);
 
-
   return (
     <div>
       <Container>
         <div className="title-holder">
           <h2 className=" mt-3">Popular Recipes</h2>
-          <p > Select your Favourite recipe and make your day happy... </p>
+          <p> Select your Favourite recipe and make your day happy... </p>
         </div>
-        {/* <div className="subtitle">
-          <h2>Popular Recipe</h2>
-        // </div> */}
         <Carousel className="mt-5 mb-5" variant="dark">
           {recipe.map((rec) => {
             return (
-              // <div key={rec.sys.id}>
-                <Carousel.Item interval={500} key={rec.sys.id}>
+              <Carousel.Item interval={500} key={rec.sys.id}>
                 <div className="d-flex justify-content-center ">
                   <img
                     src={rec.fields.image.fields.file.url}
@@ -43,11 +39,12 @@ function Hero() {
                 </div>
 
                 <Carousel.Caption>
-                  <h3 className="text-info" style={{ color: 'pink' }} >{rec.fields.title.toLowerCase()}</h3>
+                  <h3 className="text-info" style={{ color: "pink" }}>
+                    {rec.fields.title.toLowerCase().charAt(0).toUpperCase() +
+                      rec.fields.title.toLowerCase().slice(1)}
+                  </h3>
                 </Carousel.Caption>
               </Carousel.Item>
-              // </div>
-
             );
           })}
         </Carousel>

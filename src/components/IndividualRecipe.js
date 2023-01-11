@@ -19,7 +19,7 @@ export default function IndividualRecipe() {
       .then((response) => setRecipeDetails(response))
       .catch(console.error);
   }, [id]);
-  console.log(recipeDetails);
+
   return (
     <div className="container ">
       <div className="row">
