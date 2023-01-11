@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import client from "../client";
-import ExploreSection from "./ExploreSection"
+import Cell from "./Cell"
 
   
 
@@ -30,7 +30,7 @@ export default function Homepage() {
         <div className="ExploreBody">
           <div className="grid">
               {recipe.slice(-8).reverse().map((rec) => {
-               return <ExploreSection entry={rec} key={rec.sys.id} />;
+               return <Cell entry={rec} key={rec.sys.id} />;
                })}
           </div>
           <div className="Button">
