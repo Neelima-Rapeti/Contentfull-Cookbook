@@ -15,12 +15,12 @@ export default function Homepage() {
       .getEntries({
         content_type: "blog",
         // The following line orders the items per creation date:
-        order: 'sys.createdAt'
+        order: 'sys.createdAt' 
       })
       .then((response) => setRecipe(response.items))
       .catch(console.error);
   }, []);
-  console.log(recipe);
+  //console.log(recipe);
 
   return (
     <div>
