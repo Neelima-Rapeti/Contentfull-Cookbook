@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 
 export default function IndividualRecipe() {
   const [recipeDetails, setRecipeDetails] = useState([]);
+  const [rating, setRating] = useState(0);
   const { id } = useParams();
   const navigation = useNavigate();
   const goBack = () => {
@@ -16,7 +17,10 @@ export default function IndividualRecipe() {
   useEffect(() => {
     client
       .getEntry(id)
-      .then((response) => setRecipeDetails(response))
+      .then((response) => {
+        setRecipeDetails(response);
+        setRating(response.fields.rating);
+      })
       .catch(console.error);
   }, [id]);
 
@@ -52,7 +56,34 @@ export default function IndividualRecipe() {
                   </p>
                 </div>
                 <p className=" fs-5">{recipeDetails.fields?.description}</p>
+                {recipeDetails.fields?.rating ? (
+                  <>
+                    {" "}
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <span
+                        key={i}
+                        onClick={() => setRating(i)}
+                        style={{
+                          cursor: "pointer",
+                          color: i <= rating ? "orange" : "black",
+                        }}
+                      >
+                        &#9733;
+                      </span>
+                    ))}
+                    <span className="fst-italic">
+                      {" "}
+                      {recipeDetails.fields?.rating} stars{" "}
+                    </span>{" "}
+                  </>
+                ) : (
+                  <>
+                    <span className="fst-italic">No ratings yet </span>{" "}
+                    <span>🤩</span>
+                  </>
+                )}
               </div>
+
               <div className="col-sm-4 mt-4  mx-auto">
                 <img
                   src={recipeDetails.fields?.image.fields.file.url}
@@ -87,7 +118,6 @@ export default function IndividualRecipe() {
                 Go Back
               </Button>
             </div>
-            <div>{/* {recipeDetails.fields?.} */}</div>
           </div>
         </div>
       </div>
