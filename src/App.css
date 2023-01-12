@@ -128,3 +128,32 @@
     opacity: 0.8;
 }
 
+/* Styling Rating component */
+
+/* button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  .on {
+    color: rgb(217, 208, 81);
+  }
+  .off {
+    color: #ccc;
+  } */
+
+  .star.whole{
+    color: orange;
+  }
+  .star.half:before {
+    width: 0;
+    height: 0;
+    border-right: 0.3rem solid transparent;
+    border-bottom:  0.5rem solid orange;
+    border-left: 0.3rem solid transparent;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    clip: rect(0, 0.3rem, 0.5rem, 0);
+  }

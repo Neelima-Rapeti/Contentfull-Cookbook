@@ -21,7 +21,6 @@ export default function Categories() {
   return (
     <div>
       <FilterBar ingredient={ingredient} />
-
       <div className="grid mx-5">
         {recipe.map((rec) => {
           return <Cell entry={rec} key={rec.sys.id} />;
