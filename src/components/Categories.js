@@ -8,7 +8,7 @@ import FilterBar from "./FilterBar";
 export default function Categories() {
   const [recipe, setRecipe] = useState([]);
   const { ingredient } = useParams();
-  console.log (ingredient)
+
   useEffect(() => {
     client
       .getEntries({

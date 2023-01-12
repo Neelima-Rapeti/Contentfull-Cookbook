@@ -8,18 +8,16 @@ import FilterBar from "./FilterBar";
 export default function IngFilter() {
   const [recipe, setRecipe] = useState([]);
   const { selected } = useParams();
-  
+
   useEffect(() => {
     client
       .getEntries({
         content_type: "blog",
-        'metadata.tags.sys.id[all]': selected
+        "metadata.tags.sys.id[all]": selected,
       })
       .then((response) => setRecipe(response.items))
       .catch(console.error);
   }, []);
-
-  
 
   return (
     <div>
