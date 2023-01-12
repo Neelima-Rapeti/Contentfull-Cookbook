@@ -5,15 +5,15 @@ import Cell from "./Cell";
 import { useParams } from "react-router-dom";
 import FilterBar from "./FilterBar";
 
-export default function Categories() {
+export default function OrderBy() {
   const [recipe, setRecipe] = useState([]);
-  const { ingredient } = useParams();
-  console.log (ingredient)
+  const { orderType } = useParams();
+
   useEffect(() => {
     client
       .getEntries({
         content_type: "blog",
-        "fields.ingredients[match]": ingredient,
+        order: orderType
       })
       .then((response) => setRecipe(response.items))
       .catch(console.error);
@@ -21,7 +21,7 @@ export default function Categories() {
 
   return (
     <div>
-      <FilterBar ingredient={ingredient} />
+      <FilterBar orderType={orderType} />
 
       <div className="grid mx-5">
         {recipe.map((rec) => {

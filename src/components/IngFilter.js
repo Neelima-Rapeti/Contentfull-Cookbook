@@ -5,23 +5,25 @@ import Cell from "./Cell";
 import { useParams } from "react-router-dom";
 import FilterBar from "./FilterBar";
 
-export default function Categories() {
+export default function IngFilter() {
   const [recipe, setRecipe] = useState([]);
-  const { ingredient } = useParams();
-  console.log (ingredient)
+  const { selected } = useParams();
+  
   useEffect(() => {
     client
       .getEntries({
         content_type: "blog",
-        "fields.ingredients[match]": ingredient,
+        'metadata.tags.sys.id[all]': selected
       })
       .then((response) => setRecipe(response.items))
       .catch(console.error);
   }, []);
 
+  
+
   return (
     <div>
-      <FilterBar ingredient={ingredient} />
+      <FilterBar selected={selected} />
 
       <div className="grid mx-5">
         {recipe.map((rec) => {

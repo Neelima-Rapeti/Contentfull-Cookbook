@@ -8,6 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 //https://react-icons.github.io/react-icons
 import { Route, Routes } from "react-router-dom";
 import Categories from "./components/Categories";
+import OrderBy from "./components/OrderBy";
+import IngFilter from "./components/IngFilter";
+
 function App() {
   return (
     <div className="App">
@@ -19,6 +22,14 @@ function App() {
         <Route
           path="/allrecipes/category/:ingredient"
           element={<Categories />}
+        />
+        <Route
+          path="/allrecipes/order/:orderType"
+          element={<OrderBy />}
+        />
+         <Route
+          path="/allrecipes/ingredients/:selected" 
+          element={<IngFilter />}
         />
       </Routes>
       <Footer />
