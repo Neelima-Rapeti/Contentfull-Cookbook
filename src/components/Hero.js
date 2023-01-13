@@ -1,8 +1,9 @@
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 import { useState, useEffect } from "react";
+import Stack from "react-bootstrap/Stack"
 import client from "../client";
-import { NavLink } from "react-bootstrap";
+
 
 function Hero() {
   const [recipe, setRecipe] = useState([]);
@@ -22,24 +23,36 @@ function Hero() {
     <div>
       <Container>
         <div className="title-holder">
-          <h2 className=" mt-3">Popular Recipes</h2>
-          <p> Select your Favourite recipe and make your day happy... </p>
+         
+          <p className="mt-2"> Select your Favourite recipe and make your day happy... </p>
         </div>
-        <Carousel className="mt-5 mb-5" variant="dark">
+        <Carousel className="mt-5 mb-5 ca" variant="dark">
           {recipe.map((rec) => {
             return (
-              <Carousel.Item interval={500} key={rec.sys.id}>
-                <div className="d-flex justify-content-center ">
+              <Carousel.Item interval={1000} key={rec.sys.id}>
+                <Stack
+                  direction="horizontal"
+                  className="h-100 justify-content-center align-items-center"
+                  gap={3}
+                >
+                 
                   <img
                     src={rec.fields.image.fields.file.url}
                     alt={rec.fields.title}
                     height={380}
                     width={500}
                   />
+                  
+                </Stack>
+                <div className="d-flex justify-content-center ">
+                  
+                </div>
+                <div className="d-flex justify-content-center ">
+                  
                 </div>
 
                 <Carousel.Caption>
-                  <h3 className="text-info" style={{ color: "pink" }}>
+                  <h3 className=" text-light">
                     {rec.fields.title.toLowerCase().charAt(0).toUpperCase() +
                       rec.fields.title.toLowerCase().slice(1)}
                   </h3>

@@ -3,42 +3,41 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import client from "../client";
-import Cell from "./Cell"
+import Cell from "./Cell";
 import Hero from "./Hero";
-  
+import FilterBar from "./FilterBar";
 
-export default function Homepage() {
-   const [recipe, setRecipe] = useState([]);
-
-   useEffect(() => {
-    client
-      .getEntries({
-        content_type: "blog",
-        // The following line orders the items per creation date:
-        order: 'sys.createdAt' 
-      })
-      .then((response) => setRecipe(response.items))
-      .catch(console.error);
-  }, []);
+export default function Homepage({ recipes }) {
   //console.log(recipe);
 
   return (
     <div>
+      <FilterBar />
+
       <Hero />
       <div>
         <h2>Recently added</h2>
         <div className="ExploreBody">
           <div className="grid">
-              {recipe.slice(-8).reverse().map((rec) => {
-               return <Cell entry={rec} key={rec.sys.id} />;
-               })}
+            {recipes
+              .slice(-8)
+              .reverse()
+              .map((rec) => {
+                return <Cell entry={rec} key={rec.sys.id} />;
+              })}
           </div>
           <div className="Button">
-            <NavLink to="/allrecipes"><button className="btn btn-outline-warning rounded" style={{backgroundColor: 'rgb(49, 58, 61)'}}>See All</button></NavLink>
+            <NavLink to="/allrecipes">
+              <button
+                className="btn btn-outline-warning rounded"
+                style={{ backgroundColor: "rgb(49, 58, 61)" }}
+              >
+                See All
+              </button>
+            </NavLink>
           </div>
         </div>
       </div>
     </div>
   );
 }
-
