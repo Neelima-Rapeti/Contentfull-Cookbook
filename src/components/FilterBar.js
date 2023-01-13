@@ -56,15 +56,19 @@ export default function FilterBar({ ingredient }) {
                 <NavDropdown title="Ingredients" id="basic-nav-dropdown">
                   <div className="px-2">
                     {ingredients.map(({ ing, checked }, i) => (
+
                       <div key={i} className="form-check">
                         <input
                           type="checkbox"
                           className="form-check-input"
+
                           id={i}
                           checked={checked}
                           onChange={() => handleChange(checked, i)}
                         />
+
                         <label className="form-check-label" htmlFor={i}>
+
                           {ing}
                         </label>
                       </div>
@@ -73,7 +77,9 @@ export default function FilterBar({ ingredient }) {
                     <div className="my-2 mx-5">
                       <button
                         type="submit"
+
                         className="btn btn-warning"
+
                         onClick={handleSubmit}
                       >
                         Submit
@@ -90,7 +96,8 @@ export default function FilterBar({ ingredient }) {
                     Best rated
                   </NavDropdown.Item>
                   {/* order in array does not work */}
-                  <NavDropdown.Item href="/allrecipes/order/fields?.metrics[3]">
+
+                  <NavDropdown.Item href="/allrecipes/order/-fields.preparationTime">
                     Preparation time
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
