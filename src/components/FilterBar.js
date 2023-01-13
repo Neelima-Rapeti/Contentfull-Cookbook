@@ -15,7 +15,6 @@ export default function FilterBar({ ingredient }) {
   ]);
 
   let result = ingredients.filter((ingt) => ingt.checked);
-  console.log(result);
 
   const handleChange = (checked, i) => {
     let tmp = ingredients[i];
@@ -26,7 +25,6 @@ export default function FilterBar({ ingredient }) {
   };
 
   const selected = result.map((rec) => rec.ing);
-  console.log(selected);
 
   function handleSubmit(e) {
     window.location.href = `/allrecipes/ingredients/${selected}`;
@@ -58,15 +56,19 @@ export default function FilterBar({ ingredient }) {
                 <NavDropdown title="Ingredients" id="basic-nav-dropdown">
                   <div className="px-2">
                     {ingredients.map(({ ing, checked }, i) => (
-                      <div class="form-check">
+
+                      <div key={i} className="form-check">
                         <input
                           type="checkbox"
-                          class="form-check-input"
+                          className="form-check-input"
+
                           id={i}
                           checked={checked}
                           onChange={() => handleChange(checked, i)}
                         />
-                        <label class="form-check-label" for={i}>
+
+                        <label className="form-check-label" htmlFor={i}>
+
                           {ing}
                         </label>
                       </div>
@@ -75,7 +77,9 @@ export default function FilterBar({ ingredient }) {
                     <div className="my-2 mx-5">
                       <button
                         type="submit"
-                        class="btn btn-warning"
+
+                        className="btn btn-warning"
+
                         onClick={handleSubmit}
                       >
                         Submit
@@ -92,6 +96,7 @@ export default function FilterBar({ ingredient }) {
                     Best rated
                   </NavDropdown.Item>
                   {/* order in array does not work */}
+
                   <NavDropdown.Item href="/allrecipes/order/-fields.preparationTime">
                     Preparation time
                   </NavDropdown.Item>
