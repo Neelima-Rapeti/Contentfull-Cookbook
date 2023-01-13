@@ -12,6 +12,8 @@ import { useState, useEffect } from "react";
 import client from "./client";
 import Searchbar from "./components/Searchbar";
 import SearchResult from "./components/SearchResult";
+import OrderBy from "./components/OrderBy";
+import IngFilter from "./components/IngFilter";
 
 
 function App() {
@@ -40,6 +42,16 @@ function App() {
         />
 
         <Route path="/searchresult/:search" element={<SearchResult recipes={recipes}/>} />
+
+        <Route
+          path="/allrecipes/order/:orderType"
+          element={<OrderBy />}
+        />
+         <Route
+          path="/allrecipes/ingredients/:selected" 
+          element={<IngFilter />}
+        />
+
       </Routes>
       <Footer />
     </div>

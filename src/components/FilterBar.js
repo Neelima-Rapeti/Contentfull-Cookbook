@@ -3,8 +3,34 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { useState } from "react";
 
 export default function FilterBar({ ingredient }) {
+  const [ingredients, setIngredients] = useState([
+    { ing: "chicken", checked: false },
+    { ing: "tomatoes", checked: false },
+    { ing: "pasta", checked: false },
+    { ing: "asparagus", checked: false },
+    { ing: "mushrooms", checked: false },
+  ]);
+
+  let result = ingredients.filter((ingt) => ingt.checked);
+
+  const handleChange = (checked, i) => {
+    let tmp = ingredients[i];
+    tmp.checked = !checked;
+    let ingredientsClone = [...ingredients];
+    ingredientsClone[i] = tmp;
+    setIngredients([...ingredientsClone]);
+  };
+
+  const selected = result.map((rec) => rec.ing);
+
+  function handleSubmit(e) {
+    window.location.href = `/allrecipes/ingredients/${selected}`;
+    e.preventDefault();
+  }
+
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -29,73 +55,33 @@ export default function FilterBar({ ingredient }) {
 
                 <NavDropdown title="Ingredients" id="basic-nav-dropdown">
                   <div className="px-2">
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        chicken
-                      </label>
-                    </div>
+                    {ingredients.map(({ ing, checked }, i) => (
 
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        tomatoes
-                      </label>
-                    </div>
+                      <div key={i} className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
 
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        mushrooms
-                      </label>
-                    </div>
+                          id={i}
+                          checked={checked}
+                          onChange={() => handleChange(checked, i)}
+                        />
 
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        pasta
-                      </label>
-                    </div>
+                        <label className="form-check-label" htmlFor={i}>
 
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        asparagus
-                      </label>
-                    </div>
+                          {ing}
+                        </label>
+                      </div>
+                    ))}
 
-                    <div class="form-check">
-                      <input
-                        type="checkbox"
-                        class="form-check-input"
-                        id="exampleCheck1"
-                      />
-                      <label class="form-check-label" for="exampleCheck1">
-                        shallots
-                      </label>
-                    </div>
                     <div className="my-2 mx-5">
-                      <button type="submit" class="btn btn-warning">
+                      <button
+                        type="submit"
+
+                        className="btn btn-warning"
+
+                        onClick={handleSubmit}
+                      >
                         Submit
                       </button>
                     </div>
@@ -103,17 +89,19 @@ export default function FilterBar({ ingredient }) {
                 </NavDropdown>
 
                 <NavDropdown title="Order by" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/allrecipes/categories/chicken">
+                  <NavDropdown.Item href="/allrecipes/order/-sys.createdAt">
                     Most recent
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="/allrecipes/bestrated">
+                  <NavDropdown.Item href="/allrecipes/order/-fields.rating">
                     Best rated
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="/allrecipes/preparationtime">
+                  {/* order in array does not work */}
+
+                  <NavDropdown.Item href="/allrecipes/order/-fields.preparationTime">
                     Preparation time
                   </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="/allrecipes/separatelink">
+                  <NavDropdown.Item href="/allrecipes/order/fields.title">
                     A-Z
                   </NavDropdown.Item>
                 </NavDropdown>
