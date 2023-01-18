@@ -1,22 +1,16 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import client from "../client";
 import Cell from "./Cell";
 import Hero from "./Hero";
 import FilterBar from "./FilterBar";
 
 export default function Homepage({ recipes }) {
-  //console.log(recipe);
-
   return (
     <div>
       <FilterBar />
-
       <Hero />
       <div>
-        <h2>Recently added</h2>
+        <h4 className="ms-5">Recently added</h4>
         <div className="ExploreBody">
           <div className="grid">
             {recipes
