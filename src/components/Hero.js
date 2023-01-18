@@ -20,13 +20,11 @@ function Hero() {
 
   return (
     <div>
+      <h4 className="mt-2 ms-5">
+        {" "}
+        Select your favourite recipe and make your day happy...{" "}
+      </h4>
       <Container>
-        <div className="title-holder">
-          <h4 className="mt-2">
-            {" "}
-            Select your Favourite recipe and make your day happy...{" "}
-          </h4>
-        </div>
         <Carousel className="mt-5 mb-5 ca" variant="dark">
           {recipe.map((rec) => {
             return (
