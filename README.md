@@ -1,4 +1,4 @@
-# Deployd in:
+# Deployed in:
 
 https://contentfull-cookbook.netlify.app/
 
